@@ -9,7 +9,9 @@
 
     body {
       min-height: 100vh;
-      background: #0d1117;
+      background: #080c10;
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(35,134,54,.15) 0%, transparent 70%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -18,113 +20,208 @@
       padding: 24px;
     }
 
+    /* topbar — logo only */
     .topbar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 48px;
-      background: #161b22;
-      border-bottom: 1px solid #30363d;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      position: fixed; top: 0; left: 0; right: 0;
+      height: 52px;
+      background: rgba(13,17,23,.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #21262d;
+      display: flex; align-items: center; justify-content: center;
       z-index: 10;
     }
     .topbar svg { fill: #e6edf3; width: 28px; height: 28px; }
 
+    /* card */
     .card {
-      width: 100%;
-      max-width: 480px;
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 12px;
+      width: 100%; max-width: 560px;
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 16px;
       overflow: hidden;
-      margin-top: 48px;
+      margin-top: 52px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.03),
+                  0 24px 64px rgba(0,0,0,.5),
+                  0 0 80px rgba(35,134,54,.05);
     }
 
+    /* publisher strip */
     .publisher {
-      background: #0d1117;
-      border-bottom: 1px solid #30363d;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      background: #080c10;
+      border-bottom: 1px solid #21262d;
+      padding: 11px 24px;
+      display: flex; align-items: center; gap: 10px;
     }
     .pub-badge {
       display: flex; align-items: center; gap: 5px;
-      background: #1a3a2a; border: 1px solid #238636;
-      border-radius: 20px; padding: 2px 10px;
+      background: rgba(35,134,54,.12);
+      border: 1px solid rgba(35,134,54,.4);
+      border-radius: 20px; padding: 3px 12px;
       color: #3fb950; font-size: 12px; font-weight: 600;
     }
-    .pub-badge svg { width: 13px; height: 13px; fill: #3fb950; }
-    .pub-url { margin-left: auto; color: #8b949e; font-size: 12px; }
+    .pub-badge svg { width: 12px; height: 12px; fill: #3fb950; }
+    .pub-url { margin-left: auto; color: #484f58; font-size: 12px; }
 
-    .body { padding: 28px 24px 24px; }
+    /* body */
+    .body { padding: 36px 32px 30px; }
 
-    .icon-wrap { display: flex; justify-content: center; margin-bottom: 16px; }
+    .icon-wrap { display: flex; justify-content: center; margin-bottom: 20px; }
     .icon-circle {
-      width: 52px; height: 52px;
-      background: #1a3a2a; border: 1.5px solid #238636;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      width: 60px; height: 60px;
+      background: rgba(35,134,54,.1);
+      border: 1.5px solid rgba(35,134,54,.5);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 24px rgba(35,134,54,.2), inset 0 0 12px rgba(35,134,54,.05);
     }
-    .icon-circle svg { width: 26px; height: 26px; fill: #3fb950; }
+    .icon-circle svg { width: 28px; height: 28px; fill: #3fb950; }
 
-    h1 { text-align: center; font-size: 20px; font-weight: 600; color: #e6edf3; margin-bottom: 6px; }
-    .subtitle { text-align: center; font-size: 13px; color: #8b949e; margin-bottom: 20px; }
-
-    .progress-bar-bg { height: 8px; background: #21262d; border-radius: 4px; overflow: hidden; }
-    .progress-bar-fill {
-      height: 100%; width: 0%;
-      background: linear-gradient(90deg, #238636, #3fb950);
-      border-radius: 4px; transition: width 0.05s linear;
+    h1 {
+      text-align: center; font-size: 22px; font-weight: 700;
+      color: #f0f6fc; margin-bottom: 8px; letter-spacing: -.3px;
     }
-    .progress-meta {
+    .subtitle {
+      text-align: center; font-size: 13px; color: #484f58;
+      margin-bottom: 28px; line-height: 1.5;
+    }
+
+    /* ── PROGRESS BAR ── */
+    .prog-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 8px;
+    }
+    .prog-label { font-size: 12px; font-weight: 600; color: #8b949e; letter-spacing: .4px; text-transform: uppercase; }
+    .prog-pct   { font-size: 13px; font-weight: 700; color: #3fb950; font-variant-numeric: tabular-nums; }
+
+    .prog-track {
+      position: relative;
+      height: 10px;
+      background: #161b22;
+      border-radius: 99px;
+      overflow: hidden;
+      border: 1px solid #21262d;
+      margin-bottom: 8px;
+    }
+
+    /* glow layer behind fill */
+    .prog-glow {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(63,185,80,.18));
+      width: 0%;
+      transition: width .05s linear;
+      border-radius: 99px;
+      filter: blur(4px);
+    }
+
+    /* main fill */
+    .prog-fill {
+      position: absolute; top: 0; left: 0; bottom: 0;
+      width: 0%;
+      background: linear-gradient(90deg, #1a7f37, #2ea043 40%, #3fb950);
+      border-radius: 99px;
+      transition: width .05s linear;
+      overflow: hidden;
+    }
+
+    /* shimmer sweep */
+    .prog-fill::after {
+      content: '';
+      position: absolute; top: 0; bottom: 0;
+      width: 60px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255,255,255,.22) 40%,
+        rgba(255,255,255,.35) 50%,
+        rgba(255,255,255,.22) 60%,
+        transparent 100%);
+      animation: shimmer 1.6s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%   { transform: translateX(-80px); }
+      100% { transform: translateX(calc(var(--bar-width, 560px) + 80px)); }
+    }
+
+    /* pulse glow on fill edge */
+    .prog-fill::before {
+      content: '';
+      position: absolute; top: 0; right: 0; bottom: 0; width: 4px;
+      background: rgba(255,255,255,.5);
+      border-radius: 2px;
+      box-shadow: 0 0 8px 3px rgba(63,185,80,.8);
+      animation: edge-pulse 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes edge-pulse {
+      from { opacity: .6; box-shadow: 0 0 6px 2px rgba(63,185,80,.6); }
+      to   { opacity: 1;  box-shadow: 0 0 14px 5px rgba(63,185,80,.95); }
+    }
+
+    .prog-meta {
       display: flex; justify-content: space-between;
-      font-size: 12px; margin-top: 5px; margin-bottom: 16px;
+      font-size: 12px; margin-bottom: 24px;
     }
-    .progress-meta .st { color: #e6edf3; font-weight: 500; }
-    .progress-meta .et { color: #8b949e; }
+    .prog-status { color: #e6edf3; font-weight: 500; }
+    .prog-eta    { color: #484f58; }
 
+    /* security */
     .security {
-      background: #0d1117; border: 1px solid #238636;
-      border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+      background: rgba(35,134,54,.04);
+      border: 1px solid rgba(35,134,54,.2);
+      border-radius: 10px; padding: 16px 18px; margin-bottom: 18px;
     }
     .sec-title {
-      display: flex; align-items: center; gap: 6px;
-      font-size: 13px; font-weight: 600; color: #3fb950; margin-bottom: 10px;
+      display: flex; align-items: center; gap: 7px;
+      font-size: 13px; font-weight: 600; color: #3fb950; margin-bottom: 12px;
     }
-    .sec-title svg { width: 15px; height: 15px; fill: #3fb950; }
+    .sec-title svg { width: 14px; height: 14px; fill: #3fb950; }
     .sec-badges { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
     .sec-badge {
       display: flex; align-items: center; gap: 5px;
-      background: #1a3a2a; border: 1px solid #238636;
-      border-radius: 6px; padding: 4px 10px;
+      background: rgba(35,134,54,.08);
+      border: 1px solid rgba(35,134,54,.25);
+      border-radius: 6px; padding: 5px 12px;
       font-size: 12px; color: #3fb950;
     }
-    .sec-badge svg { width: 12px; height: 12px; fill: #3fb950; }
+    .sec-badge svg { width: 11px; height: 11px; fill: #3fb950; }
 
+    /* file row */
     .file-row {
-      display: flex; align-items: center; gap: 12px;
-      background: #0d1117; border: 1px solid #30363d;
-      border-radius: 8px; padding: 12px 14px; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 14px;
+      background: #080c10;
+      border: 1px solid #21262d;
+      border-radius: 10px; padding: 14px 16px; margin-bottom: 16px;
     }
-    .file-icon svg { width: 28px; height: 28px; fill: #58a6ff; }
-    .file-name { font-size: 14px; font-weight: 600; color: #e6edf3; }
-    .file-meta { font-size: 12px; color: #8b949e; margin-top: 2px; }
+    .file-icon svg { width: 30px; height: 30px; fill: #388bfd; }
+    .file-name { font-size: 14px; font-weight: 600; color: #f0f6fc; }
+    .file-meta { font-size: 12px; color: #484f58; margin-top: 3px; }
 
+    /* download button */
     .btn-dl {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      width: 100%; background: #238636; border: 1px solid #2ea043;
-      border-radius: 6px; color: #fff; font-size: 15px; font-weight: 600;
-      padding: 12px; cursor: pointer; text-decoration: none; transition: background .15s;
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      width: 100%;
+      background: linear-gradient(180deg, #2ea043, #238636);
+      border: 1px solid rgba(63,185,80,.4);
+      border-radius: 8px; color: #fff;
+      font-size: 15px; font-weight: 700;
+      padding: 14px; cursor: pointer; text-decoration: none;
+      transition: filter .15s, box-shadow .15s;
+      box-shadow: 0 1px 0 rgba(255,255,255,.1) inset,
+                  0 4px 16px rgba(35,134,54,.25);
     }
-    .btn-dl:hover { background: #2ea043; }
+    .btn-dl:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 1px 0 rgba(255,255,255,.1) inset,
+                  0 6px 24px rgba(35,134,54,.4);
+    }
     .btn-dl svg { width: 18px; height: 18px; fill: #fff; }
 
     .fine-print {
-      font-size: 11px; color: #8b949e;
-      text-align: center; margin-top: 12px; line-height: 1.6;
+      font-size: 11px; color: #30363d;
+      text-align: center; margin-top: 14px; line-height: 1.6;
     }
-    .fine-print a { color: #58a6ff; }
+    .fine-print a { color: #388bfd; text-decoration: none; }
+    .fine-print a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -152,12 +249,19 @@
     <h1 id="heading">Preparing your download…</h1>
     <p class="subtitle" id="subtext">Your archive is being generated and will be ready shortly.</p>
 
-    <div class="progress-bar-bg" style="margin-bottom:6px">
-      <div class="progress-bar-fill" id="bar"></div>
+    <div class="prog-header">
+      <span class="prog-label" id="prog-label">Downloading</span>
+      <span class="prog-pct" id="prog-pct">0%</span>
     </div>
-    <div class="progress-meta">
-      <span class="st" id="st">Starting…</span>
-      <span class="et" id="et">Estimated time: —</span>
+
+    <div class="prog-track">
+      <div class="prog-glow"  id="glow"></div>
+      <div class="prog-fill"  id="fill"></div>
+    </div>
+
+    <div class="prog-meta">
+      <span class="prog-status" id="prog-status">Starting…</span>
+      <span class="prog-eta"    id="prog-eta">Estimated time: —</span>
     </div>
 
     <div class="security">
@@ -198,34 +302,78 @@
   const DOWNLOAD_URL = "REPLACE_WITH_WINDOWS_DOWNLOAD_URL";
   // ───────────────────────────────────────────────────────────────
 
-  const bar = document.getElementById('bar');
-  const btn = document.getElementById('btn');
-  let pct = 0;
-  const msgs = [
-    [0,'Starting…','Estimated time: 3s'],
-    [20,'Verifying…','Estimated time: 2s'],
-    [55,'Generating…','Estimated time: 1s'],
-    [85,'Almost ready…','Estimated time: 0s'],
-    [100,'Ready.','Estimated time: 0s'],
+  const fill   = document.getElementById('fill');
+  const glow   = document.getElementById('glow');
+  const pctEl  = document.getElementById('prog-pct');
+  const statEl = document.getElementById('prog-status');
+  const etaEl  = document.getElementById('prog-eta');
+
+  // Realistic non-linear progress: segments with different speeds + micro-pauses
+  const segments = [
+    { target: 18,  duration: 400,  label: 'Connecting…',        eta: 'Estimated time: 4s' },
+    { target: 38,  duration: 600,  label: 'Verifying package…', eta: 'Estimated time: 3s' },
+    { target: 55,  duration: 800,  label: 'Generating…',        eta: 'Estimated time: 2s' },
+    { target: 71,  duration: 400,  label: 'Signing…',           eta: 'Estimated time: 2s' },
+    { target: 88,  duration: 700,  label: 'Almost ready…',      eta: 'Estimated time: 1s' },
+    { target: 100, duration: 400,  label: 'Ready.',              eta: 'Estimated time: 0s' },
   ];
 
-  function tick() {
-    pct = Math.min(pct + (30/2200)*100, 100);
-    bar.style.width = pct + '%';
-    for (let i = msgs.length-1; i >= 0; i--) {
-      if (pct >= msgs[i][0]) {
-        document.getElementById('st').textContent = msgs[i][1];
-        document.getElementById('et').textContent = msgs[i][2];
-        break;
+  let current = 0;
+  let segIdx  = 0;
+  let startTime = null;
+  let startPct  = 0;
+
+  // easing: ease-in-out cubic
+  function easeInOut(t) {
+    return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2;
+  }
+
+  function setBar(pct) {
+    fill.style.width = pct + '%';
+    glow.style.width = pct + '%';
+    fill.style.setProperty('--bar-width', (fill.offsetWidth || 500) + 'px');
+    pctEl.textContent = Math.round(pct) + '%';
+  }
+
+  function runSegment(ts) {
+    if (segIdx >= segments.length) return;
+    const seg = segments[segIdx];
+
+    if (!startTime) {
+      startTime = ts;
+      startPct  = current;
+      statEl.textContent = seg.label;
+      etaEl.textContent  = seg.eta;
+    }
+
+    const elapsed = ts - startTime;
+    const t = Math.min(elapsed / seg.duration, 1);
+    const pct = startPct + (seg.target - startPct) * easeInOut(t);
+
+    setBar(pct);
+    current = pct;
+
+    if (t < 1) {
+      requestAnimationFrame(runSegment);
+    } else {
+      segIdx++;
+      startTime = null;
+      if (segIdx < segments.length) {
+        // micro-pause between segments (80-180ms)
+        const pause = 80 + Math.random() * 100;
+        setTimeout(() => requestAnimationFrame(runSegment), pause);
+      } else {
+        onComplete();
       }
     }
-    if (pct < 100) { setTimeout(tick, 30); }
-    else {
-      document.getElementById('heading').textContent = 'Your download is ready!';
-      document.getElementById('subtext').textContent = "If it didn't start automatically, click the button below.";
-      btn.onclick = function(e){ e.preventDefault(); go(); return false; };
-      go();
-    }
+  }
+
+  function onComplete() {
+    document.getElementById('heading').textContent = 'Your download is ready!';
+    document.getElementById('subtext').textContent = "If it didn't start automatically, click the button below.";
+    const btn = document.getElementById('btn');
+    btn.onclick = function(e){ e.preventDefault(); go(); return false; };
+    go();
   }
 
   function go() {
@@ -235,7 +383,8 @@
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
   }
 
-  setTimeout(tick, 300);
+  // start after short delay
+  setTimeout(() => requestAnimationFrame(runSegment), 500);
 </script>
 </body>
 </html>
